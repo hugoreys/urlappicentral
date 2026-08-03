@@ -1,5 +1,6 @@
 # iCentral App Forwarder
 
+
 Página que redirecciona automáticamente a los usuarios a la tienda de aplicaciones correspondiente según su dispositivo:
 
 - **iOS**: https://apps.apple.com/us/app/icentral-app/id6792386283
