@@ -1,0 +1,9 @@
+{
+  "name": "icentral-app-forwarder",
+  "version": "1.0.0",
+  "description": "Forwarder automático para descargar iCentral App en iOS o Android",
+  "private": true,
+  "scripts": {
+    "start": "npx serve ."
+  }
+}

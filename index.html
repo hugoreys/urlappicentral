@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descarga iCentral App</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      background: #f5f5f5;
+      color: #333;
+      padding: 20px;
+    }
+    .container { max-width: 420px; }
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #ddd;
+      border-top: 4px solid #0055a4;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 24px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    h1 { font-size: 1.5rem; margin-bottom: 12px; }
+    p { margin-bottom: 24px; color: #666; }
+    .buttons { display: flex; flex-direction: column; gap: 12px; }
+    a {
+      display: block;
+      padding: 14px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      color: white;
+    }
+    .ios { background: #000; }
+    .android { background: #3ddc84; color: #000; }
+  </style>
+  <script>
+    (function () {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const iosUrl = 'https://apps.apple.com/us/app/icentral-app/id6792386283';
+      const androidUrl = 'https://play.google.com/store/apps/details?id=mx.com.icentral.clientes';
+
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        window.location.replace(iosUrl);
+      } else if (/android/i.test(ua)) {
+        window.location.replace(androidUrl);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="loader"></div>
+    <h1>Descargando iCentral App</h1>
+    <p>Detectando tu dispositivo...</p>
+    <div class="buttons">
+      <a class="ios" href="https://apps.apple.com/us/app/icentral-app/id6792386283">Descargar para iOS</a>
+      <a class="android" href="https://play.google.com/store/apps/details?id=mx.com.icentral.clientes">Descargar para Android</a>
+    </div>
+  </div>
+</body>
+</html>
