@@ -41,30 +41,14 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg0: #eef7ff;
-      --bg1: #fff5fa;
-      --text: #0b1220;
-      --sub: #5b6472;
-      --card: rgba(255, 255, 255, 0.86);
-      --stroke: rgba(15, 23, 42, 0.08);
-      --shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
       --pink: #ff339a;
       --cyan: #20b4fa;
-      --violet: #7a4dff;
-      --ios: #0b1220;
       --android: #3ddc84;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg0: #081018;
-        --bg1: #16081a;
-        --text: #f4f7fb;
-        --sub: #a8b0bd;
-        --card: rgba(22, 28, 40, 0.88);
-        --stroke: rgba(255, 255, 255, 0.08);
-        --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-        --ios: #f4f7fb;
-      }
+      --card: #141820;
+      --card-stroke: rgba(255, 255, 255, 0.08);
+      --text: #f5f7fb;
+      --sub: #9aa3b2;
+      --shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
     }
     body {
       font-family: 'Outfit', system-ui, sans-serif;
@@ -74,20 +58,18 @@
       padding: 28px 18px;
       color: var(--text);
       background:
-        radial-gradient(900px 420px at 12% 8%, rgba(32, 180, 250, 0.28), transparent 60%),
-        radial-gradient(800px 420px at 88% 18%, rgba(255, 51, 154, 0.22), transparent 58%),
-        radial-gradient(700px 380px at 50% 100%, rgba(122, 77, 255, 0.16), transparent 55%),
-        linear-gradient(160deg, var(--bg0), var(--bg1));
+        radial-gradient(900px 420px at 12% 8%, rgba(32, 180, 250, 0.22), transparent 60%),
+        radial-gradient(800px 420px at 88% 18%, rgba(255, 51, 154, 0.18), transparent 58%),
+        radial-gradient(700px 380px at 50% 100%, rgba(122, 77, 255, 0.14), transparent 55%),
+        linear-gradient(160deg, #081018, #120816 55%, #0a1018);
       overflow-x: hidden;
     }
     .container {
       width: min(100%, 420px);
       text-align: center;
       background: var(--card);
-      border: 1px solid var(--stroke);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 40px 28px 32px;
+      border: 1px solid var(--card-stroke);
+      padding: 40px 28px 28px;
       border-radius: 28px;
       box-shadow: var(--shadow);
       animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -101,7 +83,7 @@
       background: #fff;
       border-radius: 26px;
       overflow: hidden;
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
       animation: pop 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
     }
     .logo {
@@ -111,20 +93,16 @@
       object-fit: cover;
     }
     .brand {
-      font-size: clamp(1.7rem, 4vw, 2rem);
+      font-size: clamp(1.75rem, 4.2vw, 2.05rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.15;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
     }
-    .brand span {
-      background: linear-gradient(120deg, var(--cyan), var(--pink) 55%, var(--violet));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-    }
+    .brand-i { color: var(--cyan); }
+    .brand-central { color: var(--pink); }
+    .brand-app { color: #fff; }
     .status {
       color: var(--sub);
       font-size: 1rem;
@@ -146,22 +124,19 @@
       font-weight: 600;
       font-size: 1rem;
       letter-spacing: -0.01em;
-      color: #fff;
       transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
     }
     a.btn:hover { transform: translateY(-1px); filter: brightness(1.04); }
     a.btn:active { transform: scale(0.985); }
     .ios {
-      background: var(--ios);
-      color: #fff;
-    }
-    @media (prefers-color-scheme: dark) {
-      .ios { color: #0b1220; }
+      background: #fff;
+      color: #0b1220;
+      box-shadow: 0 8px 22px rgba(255, 255, 255, 0.12);
     }
     .android {
       background: var(--android);
       color: #062416;
-      box-shadow: 0 10px 24px rgba(61, 220, 132, 0.28);
+      box-shadow: 0 12px 28px rgba(61, 220, 132, 0.38);
     }
     .btn-content {
       display: inline-flex;
@@ -169,7 +144,11 @@
       justify-content: center;
       gap: 10px;
     }
-    .btn-content svg { flex-shrink: 0; height: 18px; width: auto; }
+    .btn-content svg {
+      flex-shrink: 0;
+      height: 18px;
+      width: 18px;
+    }
     .footnote {
       margin-top: 18px;
       font-size: 0.82rem;
@@ -196,18 +175,21 @@
     <div class="logo-wrap">
       <img src="/logomark.jpg" width="112" height="112" alt="iCentral App" class="logo">
     </div>
-    <h1 class="brand"><span>iCentral</span> App</h1>
+    <h1 class="brand">
+      <span class="brand-i">i</span><span class="brand-central">Central</span>
+      <span class="brand-app">App</span>
+    </h1>
     <p class="status" id="status">Elige tu plataforma para descargar</p>
     <div class="buttons">
       <a class="btn ios" href="https://apps.apple.com/us/app/icentral-app/id6792386283">
         <span class="btn-content">
-          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true" focusable="false"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4.7 219.8 4.7 304.6 4.7 350.9 18.5 430 58 487.7 74.1 510.8 92.9 531.6 116.1 531.6c22.9 0 31.4-14.9 58.7-14.9 27.5 0 35.4 14.9 58.3 14.9 23.8 0 40.1-21.4 55.6-43.3 17.5-25.3 24.7-50 25.1-51.2-.5-.2-48.6-18.6-48.6-75.1 0-46.6 37.3-68.8 39.3-70.1-21.6-31.5-55.2-35.1-66.6-35.7-32.7-2.2-63.6 18.3-80.5 18.3-2.1 0-42.2-18.3-80.4-18.3-41.4 0-83.6 24.8-103.6 70.7-24.2 58.9-6.4 137.6 19.1 182.4 22.6 38.9 51.9 82.4 88.1 82.4 23.6 0 39.4-18.3 73.4-18.3 34.4 0 49.9 18.3 73.1 18.3 36.8 0 64.7-48.9 88.9-94.1 18.1-32.4 25.6-58.7 25.6-60.2zM241.6 97.3c0-31.6 18.9-59.3 45.6-73.7 4.8-2.6 9.3-4.3 12.8-5.4-13.1-8.5-29.3-13.6-46.6-13.6-31.7 0-59.2 20.2-70.5 50.3 13.7 3.6 27.8 5.5 42.1 5.5 6.9 0 13.7-.5 20.4-1.3-1.6 9.3-2.4 18.9-2.4 28.7 0 5.5.3 10.9.9 16.2z"/></svg>
+          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true" focusable="false"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4.7 219.8 4.7 304.6c0 47.8 13.9 102.1 37.4 145.1 24.3 44.3 57.5 84.2 96.9 84.2 23.1 0 31.9-15.4 60.6-15.4 27.5 0 36.5 15.4 60.6 15.4 39.9 0 72.1-38.6 96.4-82.9 16.9-30.6 23.9-46.3 23.9-47.5-.5-.2-46.8-18.1-47.1-71.7 0-56.8 40.4-81.7 42.5-83.1-24.5-35.9-62.5-39.9-75.9-40.5zm-77.1-171.4c13.7 3.6 27.8 5.5 42.1 5.5 6.9 0 13.7-.5 20.4-1.3C302.5 15.9 287.6 0 269.1 0c-31.7 0-59.2 20.2-70.5 50.3z"/></svg>
           Descargar para iOS
         </span>
       </a>
       <a class="btn android" href="https://play.google.com/store/apps/details?id=mx.com.icentral.clientes">
         <span class="btn-content">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5 3l14 9-14 9V3z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5 3l14 9-14 9V3z"/></svg>
           Descargar para Android
         </span>
       </a>
