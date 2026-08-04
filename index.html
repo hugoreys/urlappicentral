@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>iCentral App — Descarga para iOS y Android</title>
   <meta name="description" content="Descarga iCentral App en tu dispositivo. Disponible en App Store y Google Play.">
-  <meta name="theme-color" content="#0B1220">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
   <link rel="canonical" href="https://urlappicentral.vercel.app/">
 
   <!-- Favicon / icons -->
@@ -14,7 +15,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Open Graph (WhatsApp, Facebook, LinkedIn, etc.) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="iCentral App">
   <meta property="og:locale" content="es_MX">
@@ -36,166 +37,230 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --pink: #ff339a;
-      --cyan: #20b4fa;
-      --android: #3ddc84;
-      --card: #141820;
-      --card-stroke: rgba(255, 255, 255, 0.08);
-      --text: #f5f7fb;
-      --sub: #9aa3b2;
-      --shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      --bg: #f8fafc;
+      --bg-soft: #f1f5f9;
+      --surface: #ffffff;
+      --ink: #171a1f;
+      --text-2: #4a5562;
+      --text-3: #6b7684;
+      --line: #e4eaf0;
+      --line-strong: #d5dde6;
+      --accent: #0078ff;
+      --accent-strong: #0062d6;
+      --accent-soft: #eaf4ff;
+      --brand-magenta: #ff2d95;
+      --brand-cyan: #00c2ff;
+      --success: #16b364;
+      --success-strong: #0a7d47;
+      --radius-btn: 14px;
+      --radius-xl: 24px;
+      --shadow-card: 0 1px 2px rgba(23, 26, 31, 0.035), 0 10px 28px rgba(23, 26, 31, 0.045);
+      --shadow-button: 0 1px 2px rgba(0, 80, 180, 0.1), 0 6px 16px rgba(0, 120, 255, 0.14);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --duration: 280ms;
+      --font: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
     }
+
     body {
-      font-family: 'Outfit', system-ui, sans-serif;
+      font-family: var(--font);
       min-height: 100vh;
       display: grid;
       place-items: center;
       padding: 28px 18px;
-      color: var(--text);
+      color: var(--ink);
       background:
-        radial-gradient(900px 420px at 12% 8%, rgba(32, 180, 250, 0.22), transparent 60%),
-        radial-gradient(800px 420px at 88% 18%, rgba(255, 51, 154, 0.18), transparent 58%),
-        radial-gradient(700px 380px at 50% 100%, rgba(122, 77, 255, 0.14), transparent 55%),
-        linear-gradient(160deg, #081018, #120816 55%, #0a1018);
-      overflow-x: hidden;
+        radial-gradient(900px 420px at 10% 0%, rgba(0, 120, 255, 0.10), transparent 58%),
+        radial-gradient(720px 380px at 90% 10%, rgba(255, 45, 149, 0.07), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 45%, var(--bg-soft) 100%);
     }
-    .container {
-      width: min(100%, 420px);
+
+    .shell {
+      width: min(100%, 440px);
+      animation: rise 0.7s var(--ease) both;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      padding: 36px 28px 28px;
       text-align: center;
-      background: var(--card);
-      border: 1px solid var(--card-stroke);
-      padding: 40px 28px 28px;
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
-    .logo-wrap {
-      display: inline-grid;
-      place-items: center;
-      width: 112px;
-      height: 112px;
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 22px;
-      background: #fff;
-      border-radius: 26px;
-      overflow: hidden;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
-      animation: pop 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+      text-decoration: none;
     }
-    .logo {
+
+    .logo-horizontal {
       display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: min(210px, 70vw);
+      height: auto;
     }
-    .brand {
-      font-size: clamp(1.75rem, 4.2vw, 2.05rem);
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(1.65rem, 4vw, 2rem);
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
       line-height: 1.15;
       margin-bottom: 10px;
-      animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
     }
-    .brand-i { color: var(--cyan); }
-    .brand-central { color: var(--pink); }
-    .brand-app { color: #fff; }
+
+    h1 .accent {
+      background: linear-gradient(105deg, #0056d6 0%, #0078ff 40%, #ba1c8f 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
     .status {
-      color: var(--sub);
-      font-size: 1rem;
-      font-weight: 450;
-      margin-bottom: 28px;
-      animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+      color: var(--text-2);
+      font-size: 1.02rem;
+      line-height: 1.45;
+      margin-bottom: 26px;
     }
+
     .buttons {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
     }
+
     a.btn {
-      display: block;
-      padding: 15px 20px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: -0.01em;
-      transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
-    }
-    a.btn:hover { transform: translateY(-1px); filter: brightness(1.04); }
-    a.btn:active { transform: scale(0.985); }
-    .ios {
-      background: #fff;
-      color: #0b1220;
-      box-shadow: 0 8px 22px rgba(255, 255, 255, 0.12);
-    }
-    .android {
-      background: var(--android);
-      color: #062416;
-      box-shadow: 0 12px 28px rgba(61, 220, 132, 0.38);
-    }
-    .btn-content {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+      min-height: 52px;
+      padding: 14px 20px;
+      border-radius: var(--radius-btn);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.015em;
+      transition: color var(--duration) var(--ease),
+                  background-color var(--duration) var(--ease),
+                  border-color var(--duration) var(--ease),
+                  box-shadow var(--duration) var(--ease),
+                  transform 180ms var(--ease);
     }
-    .btn-content svg {
+
+    a.btn:hover { transform: translateY(-1px); }
+    a.btn:active { transform: translateY(1px); }
+
+    .btn svg {
       flex-shrink: 0;
-      height: 18px;
       width: 18px;
+      height: 18px;
     }
+
+    .ios {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 1px 2px rgba(23, 26, 31, 0.08), 0 8px 18px rgba(23, 26, 31, 0.12);
+    }
+
+    .ios:hover { background: #0f1318; }
+
+    .android {
+      background: var(--success);
+      color: #fff;
+      box-shadow: 0 1px 2px rgba(10, 125, 71, 0.12), 0 6px 16px rgba(22, 179, 100, 0.22);
+    }
+
+    .android:hover { background: var(--success-strong); }
+
     .footnote {
       margin-top: 18px;
-      font-size: 0.82rem;
-      color: var(--sub);
-      animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+      font-size: 0.84rem;
+      color: var(--text-3);
     }
+
+    .site-link {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .site-link a {
+      color: var(--accent-strong);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .site-link a:hover { text-decoration: underline; }
+
     @keyframes rise {
       from { opacity: 0; transform: translateY(14px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes pop {
-      from { opacity: 0; transform: scale(0.92); }
-      to { opacity: 1; transform: scale(1); }
-    }
+
     @media (prefers-reduced-motion: reduce) {
-      .container, .logo-wrap, .brand, .status, .buttons, .footnote {
-        animation: none !important;
-      }
+      .shell { animation: none !important; }
+      a.btn { transition: none; }
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <div class="logo-wrap">
-      <img src="/logomark.jpg" width="112" height="112" alt="iCentral App" class="logo">
-    </div>
-    <h1 class="brand">
-      <span class="brand-i">i</span><span class="brand-central">Central</span>
-      <span class="brand-app">App</span>
-    </h1>
-    <p class="status" id="status">Elige tu plataforma para descargar</p>
-    <div class="buttons">
-      <a class="btn ios" href="https://apps.apple.com/us/app/icentral-app/id6792386283">
-        <span class="btn-content">
+  <div class="shell">
+    <main class="card">
+      <a class="logo-link" href="https://web.icentral.com.mx/" aria-label="iCentral — Inicio">
+        <img
+          class="logo-horizontal"
+          src="/logo-horizontal.png"
+          width="210"
+          height="48"
+          alt="iCentral"
+        >
+      </a>
+
+      <p class="eyebrow">App</p>
+      <h1>Tu cuenta, siempre a la <span class="accent">mano.</span></h1>
+      <p class="status" id="status">Elige tu plataforma para descargar</p>
+
+      <div class="buttons">
+        <a class="btn ios" href="https://apps.apple.com/us/app/icentral-app/id6792386283">
           <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true" focusable="false"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4.7 219.8 4.7 304.6c0 47.8 13.9 102.1 37.4 145.1 24.3 44.3 57.5 84.2 96.9 84.2 23.1 0 31.9-15.4 60.6-15.4 27.5 0 36.5 15.4 60.6 15.4 39.9 0 72.1-38.6 96.4-82.9 16.9-30.6 23.9-46.3 23.9-47.5-.5-.2-46.8-18.1-47.1-71.7 0-56.8 40.4-81.7 42.5-83.1-24.5-35.9-62.5-39.9-75.9-40.5zm-77.1-171.4c13.7 3.6 27.8 5.5 42.1 5.5 6.9 0 13.7-.5 20.4-1.3C302.5 15.9 287.6 0 269.1 0c-31.7 0-59.2 20.2-70.5 50.3z"/></svg>
           Descargar para iOS
-        </span>
-      </a>
-      <a class="btn android" href="https://play.google.com/store/apps/details?id=mx.com.icentral.clientes">
-        <span class="btn-content">
+        </a>
+        <a class="btn android" href="https://play.google.com/store/apps/details?id=mx.com.icentral.clientes">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5 3l14 9-14 9V3z"/></svg>
           Descargar para Android
-        </span>
-      </a>
-    </div>
-    <p class="footnote">Redirección automática según tu dispositivo</p>
-  </main>
+        </a>
+      </div>
+
+      <p class="footnote">Redirección automática según tu dispositivo</p>
+    </main>
+
+    <p class="site-link">
+      <a href="https://web.icentral.com.mx/">Ir a web.icentral.com.mx</a>
+    </p>
+  </div>
 
   <script>
     (function () {
